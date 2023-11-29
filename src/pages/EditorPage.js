@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Client from '../components/Client';
-import { Editor } from '../components/Editor';
+import Editor  from '../components/Editor';
 
 
 export default function EditorPage() {
