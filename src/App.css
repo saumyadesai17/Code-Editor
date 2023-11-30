@@ -85,7 +85,7 @@
 .mainWrap{
   display: grid;
   grid-template-columns: 230px 1fr;
-  height: 100vh;
+  height: 1 00vh;
 }
 
 .aside{
@@ -94,6 +94,7 @@
   color: white;
   display: flex;
   flex-direction: column;
+  height: 95vh;
 }
 
 .asideInner{
@@ -128,7 +129,20 @@
 }
 
 .leaveBtn{
-  margin-top: 20px;
+  width: 100%;
+  margin-top: 10px;
   background: #4aed88;
-  
+}
+
+.CodeMirror{
+  min-height: calc(100vh -10vh);
+  font-size: 20px;
+  line-height: 1.6;
+  padding-top: 20px;
+}
+
+.runBtn{
+  position: absolute;
+  top: 1vw;
+  left:90vw;
 }

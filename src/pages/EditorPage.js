@@ -27,12 +27,13 @@ export default function EditorPage() {
                 </div>
             </div>
 
-        <button className="btn copyBtn">Copy ROOM ID</button>
+            <button className="btn copyBtn">Copy ROOM ID</button>
 
-        <button className="btn leaveBtn">Leave</button>
+             <button className="btn leaveBtn">Leave</button>
         </div>
         <div className="editorWrap">
             <Editor/>
+            <button className='btn runBtn'>Run</button>
         </div>
     </div>
   )
