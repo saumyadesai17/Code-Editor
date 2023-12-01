@@ -1,31 +1,30 @@
-import React from 'react'
-import CodeMirror from 'codemirror';
-import 'codemirror/theme/dracula.css'; 
-import 'codemirror/mode/javascript/javascript';
-import 'codemirror/addon/edit/closetag'
-import 'codemirror/addon/edit/closebrackets'
-import 'codemirror/lib/codemirror.css'
-
-
+import React, { useRef, useEffect } from "react";
+import "codemirror/theme/dracula.css";
+import "codemirror/mode/javascript/javascript";
+import "codemirror/addon/edit/closetag";
+import "codemirror/addon/edit/closebrackets";
+import "codemirror/lib/codemirror.css";
+import CodeMirror from "codemirror";
 
 const Editor = () => {
+  const editorRef = useRef(null);
 
-  React.useEffect(() => {
-      async function init(){
-        CodeMirror.fromTextArea(document.getElementById('realTimeEditor'),{
-          mode:{name:'javascript', json:true}, //for javascriptx
-          theme:'dracula',
-          autocorrect:true,
-          autoCloseTags:true,
-          autoCloseBrackets:true,
-          lineNumbers:true,
-          // lint:true
-        });
-      }
-      init();
-    },[]);
+  useEffect(() => {
+    const editor = CodeMirror.fromTextArea(editorRef.current, {
+      mode: "javascript",
+      theme: "dracula",
+      autoCloseTags: true,
+      autoCloseBrackets: true,
+      lineNumbers: true,
+      // lint: true
+    });
 
-    
-  return <textarea id='realTimeEditor'></textarea>
-  }
-  export default Editor;
+    return () => {
+      editor.toTextArea();
+    };
+  }, []);
+
+  return <textarea ref={editorRef}></textarea>;
+};
+
+export default Editor;
