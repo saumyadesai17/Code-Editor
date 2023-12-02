@@ -5,6 +5,8 @@ import Editor  from '../components/Editor';
 import { initSocket } from '../socket';
 import { useLocation,useNavigate,Navigate,useParams } from 'react-router-dom';
 // import {Actions} from '../Actions.js'
+// import {Actions} from '../Actions.js'
+const ACTIONS = require('../Actions'); // Update the path accordingly
 
 
 export default function EditorPage() {
@@ -23,7 +25,7 @@ export default function EditorPage() {
             function handleErrors(e) {
                 console.log('socket error', e);
                 toast.error('Socket connection failed, try again later.');
-                reactNavigator('/');
+                 reactNavigator('/');
             }
 
             socketRef.current.emit(ACTIONS.JOIN,{
@@ -48,10 +50,7 @@ export default function EditorPage() {
     },[]);
 
 
-    const [clients,setClients]=useState([
-        // {socketId:1,username:'Suyash'},{socketId:2,username:'Saumya'},
-        // {socketId:3,username:'Vivek'}
-]);
+    const [clients,setClients]=useState([]);
 
     if(!location.state){
         return <Navigate to="/"/>
