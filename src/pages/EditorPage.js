@@ -41,12 +41,20 @@ export default function EditorPage() {
                     toast.success(`${username} joined the room.`)
                 }
                 setClients(clients)
-
+                socketRef.current.off(ACTIONS.JOINED)
+            })
+            //Listening for disconnected
+            socketRef.current.on(ACTIONS.DISCONNECTED,({socketId,username}) =>{
+                toast.success(`${username} left the room.`)
+                setClients((prev) =>{
+                    return prev.filter(client=> client.socketId!==socketId )
+                })
             })
 
         };
         init();
 
+        
     },[]);
 
 
