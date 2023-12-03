@@ -57,6 +57,16 @@ export default function EditorPage() {
         
     },[]);
 
+    async function copyRoomId(){
+        try{
+            await navigator.clipboard.writeText(roomId);
+            toast.success("Room Id has been copied to your clipboard");
+        }catch(err){
+            toast.error("Could not copy Room Id");
+            console.log(err);
+        }
+    }
+
 
     const [clients,setClients]=useState([]);
 
@@ -82,7 +92,7 @@ export default function EditorPage() {
                 </div>
             </div>
 
-            <button className="btn copyBtn">Copy ROOM ID</button>
+            <button className="btn copyBtn" onClick={copyRoomId}>Copy ROOM ID</button>
 
              <button className="btn leaveBtn">Leave</button>
         </div>
