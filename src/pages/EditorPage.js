@@ -42,7 +42,13 @@ export default function EditorPage() {
                 }
                 setClients(clients)
                 socketRef.current.off(ACTIONS.JOINED)
+                // if (!clients.some(client => client.username === username)) {
+                //     setClients((prevClients) => [...prevClients, { username, socketId }]);
+                // }
+                // socketRef.current.off(ACTIONS.JOINED);
             })
+
+            
             //Listening for disconnected
             socketRef.current.on(ACTIONS.DISCONNECTED,({socketId,username}) =>{
                 toast.success(`${username} left the room.`)
@@ -67,6 +73,9 @@ export default function EditorPage() {
         }
     }
 
+    function leaveRoom(){
+        reactNavigator('/')
+    }
 
     const [clients,setClients]=useState([]);
 
@@ -94,7 +103,7 @@ export default function EditorPage() {
 
             <button className="btn copyBtn" onClick={copyRoomId}>Copy ROOM ID</button>
 
-             <button className="btn leaveBtn">Leave</button>
+             <button className="btn leaveBtn" onClick={leaveRoom}>Leave</button>
         </div>
         <div className="editorWrap">
             <Editor socketRef={socketRef} roomId={roomId}/>

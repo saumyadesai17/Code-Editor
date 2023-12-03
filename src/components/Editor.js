@@ -1,55 +1,3 @@
-// import React, { useRef, useEffect } from "react";
-// import "codemirror/theme/dracula.css";
-// import "codemirror/mode/javascript/javascript";
-// import "codemirror/addon/edit/closetag";
-// import "codemirror/addon/edit/closebrackets";
-// import "codemirror/lib/codemirror.css";
-// import CodeMirror from "codemirror";
-// import ACTIONS from "../Actions";
-
-
-
-// const Editor = ({socketRef,roomId}) => {
-//   const editorRef = useRef(null);
-
-//   useEffect(() => {
-//     const editor = CodeMirror.fromTextArea(editorRef.current, {
-//       mode: "javascript",
-//       theme: "dracula",
-//       autoCloseTags: true,
-//       autoCloseBrackets: true,
-//       lineNumbers: true,
-//       // lint: true
-//     });
-
-//     editorRef.current.on('change',(instance,changes)=>{
-//       console.log("Changes",changes);
-//       const {origin} = changes;
-//       if (origin !== 'setvalue'){
-//         socketRef.current.emit()
-//       }
-//       const code = instance.getValue(ACTIONS.CODE_CHANGE,{
-//         roomId,
-//         code,
-
-//       });
-//     })
-
-//     socketRef.current.on(ACTIONS.CODE_CHANGE,({code}) =>{
-//       if(code!==null){
-//         editorRef.current.setValue(code);
-//       }
-//     })
-
-//     return () => {
-//       editor.toTextArea();
-//     };
-//   }, []);
-
-//   return <textarea ref={editorRef}></textarea>;
-// };
-
-// export default Editor;
 
 
 import React, { useRef, useEffect } from "react";
@@ -79,6 +27,7 @@ const Editor = ({ socketRef, roomId }) => {
       console.log("Changes", changes);
       const { origin } = changes;
       if (origin !== "setValue" && socketRef.current) {
+        console.log("Emitting code change eveent to serevr")
         socketRef.current.emit(ACTIONS.CODE_CHANGE, {
           roomId,
           code: instance.getValue(),
@@ -98,6 +47,12 @@ const Editor = ({ socketRef, roomId }) => {
           editor.setValue(code);
         }
       });
+    }
+
+    return () =>{
+      if(socketRef.current){
+      socketRef.current.off(ACTIONS.CODE_CHANGE);
+      }
     }
   },[socketRef.current])
 

@@ -11,7 +11,7 @@ function App() {
     <>
       <div>
         <Toaster
-          position='top-center'
+          position='top-centre'
           toastOptions={{
             success:{
               theme:{
