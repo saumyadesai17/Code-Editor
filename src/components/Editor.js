@@ -27,7 +27,6 @@ const Editor = ({ socketRef, roomId }) => {
       console.log("Changes", changes);
       const { origin } = changes;
       if (origin !== "setValue" && socketRef.current) {
-        console.log("Emitting code change eveent to serevr")
         socketRef.current.emit(ACTIONS.CODE_CHANGE, {
           roomId,
           code: instance.getValue(),

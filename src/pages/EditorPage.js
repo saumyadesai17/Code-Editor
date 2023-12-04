@@ -36,18 +36,25 @@ export default function EditorPage() {
 
 
             //listening for joied event
-            socketRef.current.on(ACTIONS.JOINED, ({clients,username,socketId}) =>{
-                if(username !== location.state?.username){
-                    toast.success(`${username} joined the room.`)
-                }
-                setClients(clients)
-                socketRef.current.off(ACTIONS.JOINED)
-                // if (!clients.some(client => client.username === username)) {
-                //     setClients((prevClients) => [...prevClients, { username, socketId }]);
-                // }
-                // socketRef.current.off(ACTIONS.JOINED);
-            })
+            // socketRef.current.on(ACTIONS.JOINED, ({clients:updatedClients,username,socketId}) =>{
+            //     if(username !== location.state?.username){
+            //         toast.success(`${username} joined the room.`)
+            //     }
+            //     setClients(clients)
+            //     socketRef.current.off(ACTIONS.JOINED)
+               
+            // });
 
+            socketRef.current.on(ACTIONS.JOINED, ({ clients: updatedClients, username, socketId }) => {
+                if (username !== location.state?.username) {
+                  toast.success(`${username} joined the room.`);
+                }
+        
+                setClients(updatedClients);
+              });
+
+       
+              
             
             //Listening for disconnected
             socketRef.current.on(ACTIONS.DISCONNECTED,({socketId,username}) =>{
@@ -61,7 +68,7 @@ export default function EditorPage() {
         init();
 
         
-    },[]);
+    },[location.state?.username]);
 
     async function copyRoomId(){
         try{
