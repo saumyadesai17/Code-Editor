@@ -1,4 +1,10 @@
+/* *{
+  overflow: hidden;
+} */
 
+html{
+  overflow: hidden;
+}
 
 .homePageWrapper{
   display:flex ;
@@ -145,4 +151,8 @@
   position: absolute;
   top: 1vw;
   left:90vw;
+}
+
+.CodeMirror.cm-s-dracula{
+  height:100vh !important;
 }
