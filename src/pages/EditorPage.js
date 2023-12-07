@@ -55,6 +55,9 @@ export default function EditorPage() {
       setClients((prev) => prev.filter((client) => client.socketId !== socketId));
     };
 
+  
+    
+
     if (location.state?.username) {
       init();
     }
@@ -115,7 +118,7 @@ export default function EditorPage() {
 
       <div className="editorWrap">
         <Editor socketRef={socketRef} roomId={roomId} />
-        <button className='btn runBtn'>Run</button>
+        <button className='btn runBtn' onClick={handleRun}>Run</button>
       </div>
     </div>
   );
