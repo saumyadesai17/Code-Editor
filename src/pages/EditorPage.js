@@ -4,7 +4,7 @@ import Client from '../components/Client';
 import Editor from '../components/Editor';
 import { initSocket } from '../socket';
 import { useLocation, useNavigate, Navigate, useParams } from 'react-router-dom';
-const ACTIONS = require('../Actions'); // Update the path accordingly
+const ACTIONS = require('../Actions'); 
 
 export default function EditorPage() {
   const socketRef = useRef(null);
@@ -118,7 +118,7 @@ export default function EditorPage() {
 
       <div className="editorWrap">
         <Editor socketRef={socketRef} roomId={roomId} />
-        <button className='btn runBtn' onClick={handleRun}>Run</button>
+        <button className='btn runBtn'>Run</button>
       </div>
     </div>
   );
