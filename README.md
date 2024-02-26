@@ -1,3 +1,10 @@
+#Project Description 
+
+Developed a collaborative code editor facilitating real-time, synchronized coding experiences for multiple
+users. Implemented features enabling simultaneous editing, version control, and seamless collaboration,
+enhancing productivity and teamwork in coding environments.
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
